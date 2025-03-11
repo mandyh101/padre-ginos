@@ -6,9 +6,9 @@ import prettier from "eslint-config-prettier";
 export default [
   js.configs.recommended,
   {
-    files: ["**/*.js"],
+    files: ["**/*.js", "**/*.jsx"], //todo could add typescript when doing the ts path
     languageOptions: {
-      globals: { ...globals.browser, ...globals.node },
+      globals: { ...globals.browser, ...globals.node }, //adds browser and node globals e.g. document.
       parserOptions: {
         ecmaFeatures: {
           jsx: true,
@@ -16,5 +16,6 @@ export default [
       },
     },
   },
+  // prettier config always has to be last in eslint config array to prevent eslint picking up non-issues
   prettier,
 ];
