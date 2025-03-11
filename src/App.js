@@ -1,3 +1,6 @@
+import React from "react";
+import { createRoot } from "react-dom";
+
 const Pizza = (props) => {
   return React.createElement("div", {}, [
     React.createElement("h1", {}, props.name),
@@ -31,5 +34,5 @@ const App = () => {
 };
 
 const container = document.getElementById("root"); //first get the cdiv to render the app in
-const root = ReactDOM.createRoot(container); //set a root variable using reactDOM
+const root = createRoot(container); //set a root variable using reactDOM
 root.render(React.createElement(App)); //render the app to the root
