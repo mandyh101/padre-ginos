@@ -11,7 +11,7 @@ const intl = new Intl.NumberFormat("en-NZ", {
 //* the useEffect hook is used to do something (an effect) as soon as a component is rendered: component renders, effect runs
 export default function Order() {
   const [pizzaType, setPizzaType] = useState("pepperoni");
-  const [pizzaSize, setPizzaSize] = useState("M  ");
+  const [pizzaSize, setPizzaSize] = useState("M");
   const [pizzaTypes, setPizzaTypes] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -19,7 +19,12 @@ export default function Order() {
 
   if (!loading) {
     selectedPizza = pizzaTypes.find((pizza) => pizza.id === pizzaType);
+    price = intl.format(
+      selectedPizza.sizes ? selectedPizza.sizes[pizzaSize] : "",
+    );
   }
+  console.log(price, pizzaSize);
+
   /**
    * ! this is the side effect function
    * Fetches the list of pizza types from the API.
@@ -99,12 +104,18 @@ export default function Order() {
           <button type="submit">Add to Cart</button>
         </div>
         <div className="order-pizza">
-          <Pizza
-            name={selectedPizza.name}
-            description={selectedPizza.description}
-            image={selectedPizza.image}
-          />
-          <p>$13.37</p>
+          {loading ? (
+            <h2>Loading pizzas...</h2>
+          ) : (
+            <>
+              <Pizza
+                name={selectedPizza.name}
+                description={selectedPizza.description}
+                image={selectedPizza.image}
+              />
+              <p>{price}</p>
+            </>
+          )}
         </div>
       </form>
     </div>
