@@ -10,8 +10,6 @@ const intl = new Intl.NumberFormat("en-NZ", {
 //* two way binding is not free in react - enter useState hook to set and update component state
 //* the useEffect hook is used to do something (an effect) as soon as a component is rendered: component renders, effect runs
 export default function Order() {
-  // const pizzaType = "pepperoni ";
-  // const pizzaSize = "M";
   const [pizzaType, setPizzaType] = useState("pepperoni");
   const [pizzaSize, setPizzaSize] = useState("M  ");
   const [pizzaTypes, setPizzaTypes] = useState([]);
@@ -20,7 +18,7 @@ export default function Order() {
   let price, selectedPizza; //immutable, selectedPizza is always pizzaType from PizzaTypes, and price is always from selectedPizza
 
   if (!loading) {
-    selectedPizza = pizzaTypes.find((pizza) => pizzaType === pizza.id);
+    selectedPizza = pizzaTypes.find((pizza) => pizza.id === pizzaType);
   }
   /**
    * ! this is the side effect function
@@ -35,10 +33,12 @@ export default function Order() {
     setLoading(false);
   }
   //* use useEffect to run our fecth function outside the render cycle so the function doesn't keep running everytime the component is rendered, ou only want it to run once at the start of mounting th component
+
   useEffect(() => {
     fetchPizzaTypes();
   }, []); //empty array means no variables tracked so this only ever runs once when the component is rendered, its not watching any variables
 
+  console.log(selectedPizza);
   return (
     <div className="order">
       <h2>Create Order</h2>
@@ -52,7 +52,7 @@ export default function Order() {
               onChange={(e) => setPizzaType(e.target.value)}
             >
               {pizzaTypes.map((pizza) => (
-                <option key={pizza.id} value={pizza.name}>
+                <option key={pizza.id} value={pizza.id}>
                   {pizza.name}
                 </option>
               ))}
@@ -100,9 +100,9 @@ export default function Order() {
         </div>
         <div className="order-pizza">
           <Pizza
-            name="Pepperoni"
-            description="Mozzarella Cheese, Pepperoni"
-            image="/public/pizzas/pepperoni.webp"
+            name={selectedPizza.name}
+            description={selectedPizza.description}
+            image={selectedPizza.image}
           />
           <p>$13.37</p>
         </div>
