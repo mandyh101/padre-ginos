@@ -1,11 +1,15 @@
+import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import Order from "./Order";
 const App = () => {
   return (
-    <div>
-      <h1>Padre Gino's - order now</h1>
-      <Order />
-    </div>
+    //* wrapping an app in StrictMode checks and gives you additional warnings about things you shouldn't be doing and also warns you if you are using features or packags that will be deprecated!
+    <StrictMode>
+      <div>
+        <h1>Padre Gino's - order now</h1>
+        <Order />
+      </div>
+    </StrictMode>
   );
 };
 
