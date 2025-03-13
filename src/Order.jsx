@@ -56,6 +56,7 @@ export default function Order() {
               value={pizzaType}
               onChange={(e) => setPizzaType(e.target.value)}
             >
+              {/*interesting note on using key, tying key tot he index is not stable and is not good practice as it is not actually related to the object being mapped like an id is for example. So use a related value on the object, or if it doesn't matter if data gets reorganised you can use index with all this in mind! */}
               {pizzaTypes.map((pizza) => (
                 <option key={pizza.id} value={pizza.id}>
                   {pizza.name}
