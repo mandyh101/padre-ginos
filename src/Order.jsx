@@ -45,7 +45,7 @@ export default function Order() {
 
   console.log(selectedPizza);
   return (
-    <div className="order">
+    <div className="order" style={{ marginLeft: "0" }}>
       <h2>Create Order</h2>
       <form>
         <div>
