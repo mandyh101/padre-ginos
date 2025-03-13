@@ -1,7 +1,11 @@
 import { useState, useEffect, useContext } from "react";
+import { createLazyFileRoute } from "@tanstack/react-router";
 import Pizza from "../pizza";
 import Cart from "../Cart";
 import { CartContext } from "../contexts";
+
+//create the route, first arg is path and then pass in any other args stated in the route root, ./__root.jsx expects a component arg
+export const Route = createLazyFileRoute("/order")({ component: Order });
 
 const intl = new Intl.NumberFormat("en-NZ", {
   style: "currency",
