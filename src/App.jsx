@@ -7,6 +7,7 @@ import { CartContext } from "./contexts";
 
 const App = () => {
   const cartHook = useState([]);
+  console.log(cartHook);
   return (
     //* wrapping an app in StrictMode checks and gives you additional warnings about things you shouldn't be doing and also warns you if you are using features or packags that will be deprecated!
     <StrictMode>

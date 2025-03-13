@@ -1,6 +1,7 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import Pizza from "./pizza";
 import Cart from "./Cart";
+import { CartContext } from "./contexts";
 
 const intl = new Intl.NumberFormat("en-NZ", {
   style: "currency",
@@ -15,7 +16,8 @@ export default function Order() {
   const [pizzaSize, setPizzaSize] = useState("M");
   const [pizzaTypes, setPizzaTypes] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [cart, setCart] = useState([]);
+  //* this is where our cart context is being updated in our app - important to understand where context is being modified as oppoesed to where it is just being shown
+  const [cart, setCart] = useContext(CartContext);
 
   async function checkout() {
     setLoading(true);
