@@ -17,6 +17,20 @@ export default function Order() {
   const [loading, setLoading] = useState(true);
   const [cart, setCart] = useState([]);
 
+  async function checkout() {
+    setLoading(true);
+    await fetch("/api/order", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ cart }),
+    });
+    //runs when the await completes
+    setCart([]);
+    setLoading(false);
+  }
+
   let price, selectedPizza; //immutable, selectedPizza is always pizzaType from PizzaTypes, and price is always from selectedPizza
 
   if (!loading) {
@@ -39,7 +53,6 @@ export default function Order() {
     setLoading(false);
   }
   //* use useEffect to run our fecth function outside the render cycle so the function doesn't keep running everytime the component is rendered, ou only want it to run once at the start of mounting th component
-
   useEffect(() => {
     fetchPizzaTypes();
   }, []); //empty array means no variables tracked so this only ever runs once when the component is rendered, its not watching any variables
@@ -129,7 +142,7 @@ export default function Order() {
           </div>
         </form>
       </div>
-      {loading ? <h2>LOADING …</h2> : <Cart cart={cart} />}
+      {loading ? <h2>LOADING …</h2> : <Cart checkout={checkout} cart={cart} />}
     </div>
   );
 }
