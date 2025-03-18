@@ -23,6 +23,9 @@ function ErrorBoundaryWrappedPastOrderRoutes() {
 }
 
 function PastOrdersRoute() {
+  //throw an error
+  // throw new Error("Something went wrong");
+
   const [page, setPage] = useState(1);
   const [focusedOrder, setFocusedOrder] = useState(null);
   const { isLoading, data } = useQuery({
@@ -44,6 +47,11 @@ function PastOrdersRoute() {
       <div className="past-orders">
         <h2>Loading...</h2>
       </div>
+    );
+  }
+  if (!isLoading) {
+    throw new Error(
+      "Something went wrong in the render of the PastOrdersRoute component",
     );
   }
   return (
