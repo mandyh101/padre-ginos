@@ -8,7 +8,7 @@ export default function Header() {
 
   return (
     <nav>
-      <Link>
+      <Link to={"/"}>
         <h1 className="logo">Padre Gino's Pizza</h1>
       </Link>
       <div className="nav-cart">
