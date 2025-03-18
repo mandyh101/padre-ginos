@@ -49,11 +49,6 @@ function PastOrdersRoute() {
       </div>
     );
   }
-  if (!isLoading) {
-    throw new Error(
-      "Something went wrong in the render of the PastOrdersRoute component",
-    );
-  }
   return (
     <div className="past-orders">
       <table>
