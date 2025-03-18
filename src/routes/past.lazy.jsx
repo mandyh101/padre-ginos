@@ -5,10 +5,22 @@ import getPastOrders from '../api/getPastOrders'
 import getPastOrder from '../api/getPastOrder'
 import Modal from '../Modal'
 import { priceConverter } from "../useCurrency";
+import ErrorBoundary from "../ErrorBoundary";
 
 export const Route = createLazyFileRoute("/past")({
-  component: PastOrdersRoute,
+  component: ErrorBoundaryWrappedPastOrderRoutes,
 });
+
+// to use the Error Boundary we need to wrap the child routes inside the ErrorBoundary
+// if we were to return the Error Boundary component inside the PastOrdersRoute component then if the route had an error the whole component would blow up and the ErrorBoundary would not be able to catch it
+// the ErrorBoundary can only catch things that are rendered inside of it
+function ErrorBoundaryWrappedPastOrderRoutes() {
+  return (
+    <ErrorBoundary>
+      <PastOrdersRoute />
+    </ErrorBoundary>
+  );
+}
 
 function PastOrdersRoute() {
   const [page, setPage] = useState(1);
