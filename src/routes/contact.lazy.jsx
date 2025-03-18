@@ -13,12 +13,17 @@ function ContactRoute() {
       e.preventDefault();
       const formData = new FormData(e.target);
       return postContact(
-        formData.get('name'),
-        formData.get('email'),
-        formData.get('message')
-      )
-    }
-  })
+        formData.get("name"),
+        formData.get("email"),
+        formData.get("message"),
+      );
+    },
+  });
+  // error state
+  if (mutation.isError) {
+    return <div>{mutation.error.message}</div>;
+  }
+  // render component
   return (
     <div className="contact">
       <h2>Contact</h2>
@@ -34,5 +39,5 @@ function ContactRoute() {
         </form>
       )}
     </div>
-  )
+  );
 }
