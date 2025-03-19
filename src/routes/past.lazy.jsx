@@ -1,9 +1,9 @@
-import { useState } from 'react'
-import { useQuery } from '@tanstack/react-query'
-import { createLazyFileRoute } from '@tanstack/react-router'
-import getPastOrders from '../api/getPastOrders'
-import getPastOrder from '../api/getPastOrder'
-import Modal from '../Modal'
+import { useState } from "react";
+import { useQuery } from "@tanstack/react-query";
+import { createLazyFileRoute } from "@tanstack/react-router";
+import getPastOrders from "../api/getPastOrders";
+import getPastOrder from "../api/getPastOrder";
+import Modal from "../Modal";
 import { priceConverter } from "../useCurrency";
 import ErrorBoundary from "../ErrorBoundary";
 
@@ -42,6 +42,7 @@ function PastOrdersRoute() {
     enabled: !!focusedOrder, //this query attribute allows us to only run the query if the focusedOrder is truthy
   });
 
+  //TODO can I replace this isLoading rendering with a suspense component?
   if (isLoading) {
     return (
       <div className="past-orders">
