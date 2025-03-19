@@ -1,4 +1,4 @@
-import { defineWorkspace } from "vitest/config.js";
+import { defineWorkspace } from "vitest/config";
 
 export default defineWorkspace([
   //this config keeps our tests we've created so far separated in a happy-dom environment

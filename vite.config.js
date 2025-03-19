@@ -17,10 +17,4 @@ export default defineConfig({
   },
   // tanstack goes before react
   plugins: [TanStackRouterVite(), react()],
-  test: {
-    environment: "happy-dom",
-    coverage: {
-      reporter: ["text", "json", "html"],
-    },
-  },
 });
