@@ -1,6 +1,6 @@
 import { useState, useEffect, useContext } from "react";
 import { createLazyFileRoute } from "@tanstack/react-router";
-import Pizza from "../pizza";
+import Pizza from "../Pizza";
 import Cart from "../Cart";
 import { CartContext } from "../contexts";
 
@@ -63,19 +63,15 @@ export default function Order() {
     fetchPizzaTypes();
   }, []); //empty array means no variables tracked so this only ever runs once when the component is rendered, its not watching any variables
 
+  function addToCart() {
+    setCart([...cart, { pizza: selectedPizza, size: pizzaSize, price }]);
+  }
+
   return (
     <div className="order-page">
       <div className="order">
         <h2>Create Order</h2>
-        <form
-          onSubmit={(e) => {
-            e.preventDefault();
-            setCart([
-              ...cart,
-              { pizza: selectedPizza, size: pizzaSize, price },
-            ]);
-          }}
-        >
+        <form action={addToCart}>
           <div>
             <div>
               <label htmlFor="pizza-type">Pizza Type</label>
