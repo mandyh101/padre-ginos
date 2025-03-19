@@ -1,4 +1,4 @@
-import { render } from "@testing-library/react";
+import { renderHook } from "@testing-library/react";
 import { expect, test, vi } from "vitest";
 import createFetchMock from "vitest-fetch-mock";
 import { usePizzaOfTheDay } from "../usePizzaOfTheDay";
@@ -20,24 +20,10 @@ const testPizza = {
   },
 };
 
-//FAKE CUSTOM HOOK CALL (WHEN)
-function getPizzaOfTheDay() {
-  let pizza;
-
-  //here we are faking a component that doesn't do anything except return null so we can test callig the custom hook without side effects
-  function TestComponent() {
-    pizza = usePizzaOfTheDay();
-    return null;
-  }
-
-  render(<TestComponent />);
-
-  return pizza;
-}
-
 // TEST WHAT WE EXPECT TO HAPPEN (THEN)
 test("gives null when gives null when first called", async () => {
   fetch.mockResponseOnce(JSON.stringify(testPizza));
-  const pizza = getPizzaOfTheDay();
+  const { result } = renderHook(() => usePizzaOfTheDay());
+  const pizza = result.current;
   expect(pizza).toBeNull();
 });
