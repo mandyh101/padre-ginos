@@ -1,7 +1,7 @@
 const apiUrl = import.meta.env.VITE_API_URL;
 import { useState, useEffect, useContext } from "react";
 import { createLazyFileRoute } from "@tanstack/react-router";
-import Pizza from "../pizza";
+import Pizza from "../Pizza";
 import Cart from "../Cart";
 import { CartContext } from "../contexts";
 
