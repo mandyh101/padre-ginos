@@ -5,7 +5,7 @@ exports[`api returns data in expected format 1`] = `
   "category": "Supreme",
   "description": "A classic pizza topped with tomatoes, mozzarella, and basil.",
   "id": "calabrese",
-  "image": "/public/pizzas/calabrese.webp",
+  "image": "/pizzas/calabrese.webp",
   "name": " The Calabrese Pizza",
   "size": {
     "L": 20.25,

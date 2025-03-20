@@ -12,7 +12,7 @@ const testPizza = {
   name: " The Calabrese Pizza",
   category: "Supreme",
   description: "A classic pizza topped with tomatoes, mozzarella, and basil.",
-  image: "/public/pizzas/calabrese.webp",
+  image: "/pizzas/calabrese.webp",
   size: {
     S: 12.25,
     M: 16.25,
