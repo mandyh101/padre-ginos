@@ -1,10 +1,10 @@
-import { use } from "react";
+import { useContext } from "react";
 import { Link } from "@tanstack/react-router";
 import { CartContext } from "./contexts";
 
 export default function Header() {
   // no updating in header so no need for setCart
-  const [cart] = use(CartContext);
+  const [cart] = useContext(CartContext);
 
   return (
     <nav>

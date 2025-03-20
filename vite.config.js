@@ -12,19 +12,5 @@ export default defineConfig({
     },
   },
   // tanstack goes before react
-  plugins: [
-    TanStackRouterVite(),
-    react({
-      babel: {
-        plugins: [
-          [
-            "babel-plugin-react-compiler",
-            {
-              target: "19",
-            },
-          ],
-        ],
-      },
-    }),
-  ],
+  plugins: [TanStackRouterVite(), react()],
 });

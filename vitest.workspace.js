@@ -8,12 +8,6 @@ export default defineWorkspace([
       include: ["**/*.node.test.{js,jsx}"],
       name: "happy-dom",
       environment: "happy-dom",
-      coverage: {
-        provider: "istanbul", // Use Istanbul for coverage
-        reporter: ["text", "html"], // Specify desired reporters
-        include: ["src/**/*.ts"], // Include files for coverage
-        exclude: ["src/test/**"], // Exclude test files
-      },
     },
   },
   //this config creates a playwright environment where we will write some new browser tests using PW
@@ -27,12 +21,6 @@ export default defineWorkspace([
         provider: "playwright",
         enabled: true,
         name: "chromium",
-      },
-      coverage: {
-        provider: "istanbul", // Use Istanbul for coverage
-        reporter: ["text", "html"], // Specify desired reporters
-        include: ["src/**/*.ts"], // Include files for coverage
-        exclude: ["src/test/**"], // Exclude test files
       },
     },
   },

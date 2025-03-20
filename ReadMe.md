@@ -4,12 +4,11 @@ A follow along project with Front End Masters and Brian Holt to refresh over cor
 
 ## Getting started
 
-### To run public website:
+### To run website:
 
-- Check you are in the _Padre Ginos_ directory (my working code)
 - `npm run dev` will start your local server through vite
+- `npm run build` to test the build
 
-### To run the api for accessing and testing preset data and assets:
+### Deployment
 
-- `cd` into the _api_ folder
-- `npm run dev` to run the api
+This webiste is hosted on Netlify

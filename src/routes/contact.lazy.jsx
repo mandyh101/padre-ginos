@@ -10,7 +10,9 @@ export const Route = createLazyFileRoute("/contact")({
 function ContactRoute() {
   //this mutation is a result of the useMutation hook from query. It needs to be invoked to make the request
   const mutation = useMutation({
-    mutationFn: function (formData) {
+    mutationFn: function (e) {
+      e.preventDefault();
+      const formData = new FormData(e.target);
       return postContact(
         formData.get("name"),
         formData.get("email"),
@@ -30,7 +32,7 @@ function ContactRoute() {
         <h3>Submitted!</h3>
       ) : (
         //mutation.mutate is calling the mutation function that we created using the tansatck query useMutation hook
-        <form action={mutation.mutate}>
+        <form onSubmit={mutation.mutate}>
           <ContactInput type="text" name="name" placeholder="Name" />
           <ContactInput type="email" name="email" placeholder="Email" />
           <textarea placeholder="Message" name="message"></textarea>
