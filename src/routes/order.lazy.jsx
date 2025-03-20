@@ -1,3 +1,4 @@
+const apiUrl = import.meta.env.VITE_API_URL;
 import { useState, useEffect, useContext } from "react";
 import { createLazyFileRoute } from "@tanstack/react-router";
 import Pizza from "../pizza";
@@ -6,6 +7,7 @@ import { CartContext } from "../contexts";
 
 //create the route, first arg is path and then pass in any other args stated in the route root, ./__root.jsx expects a component arg
 export const Route = createLazyFileRoute("/order")({ component: Order });
+
 
 const intl = new Intl.NumberFormat("en-NZ", {
   style: "currency",
@@ -25,7 +27,7 @@ export default function Order() {
 
   async function checkout() {
     setLoading(true);
-    await fetch("/api/order", {
+    await fetch(`${apiUrl}/api/order`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -53,7 +55,7 @@ export default function Order() {
    * Sets the loading state to false once the data is retrieved.
    */
   async function fetchPizzaTypes() {
-    const pizzaRes = await fetch("/api/pizzas");
+    const pizzaRes = await fetch(`${apiUrl}/api/pizzas`);
     const pizzaJson = await pizzaRes.json();
     setPizzaTypes(pizzaJson);
     setLoading(false);
